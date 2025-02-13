@@ -132,20 +132,20 @@ body {
     padding: 40px 20px;
 }
 
-.about-title {
-    font-size: 36px;
-    text-align: center;
-    margin-bottom: 40px;
-    width: 100%;
-}
-
 .about-content-split {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    align-items: center;
     
     
+    
+}
+
+.about-title {
+    font-size: 36px;
+    text-align: left;  /* Changed from center to left */
+    margin-bottom: 40px;
+    width: 100%;
 }
 
 .about-content-split-left,
@@ -153,10 +153,38 @@ body {
     padding: 20px;
 }
 
+.about-content-split-left {
+    padding: 20px;
+    text-align: left;  /* Added to ensure all text aligns left */
+}
+
+.about-content-split-right {
+    padding: 20px;
+}
+
 .about-image {
-    width: 50%;
+    width: 60%;
+    min-width: 300px;
     height: auto;
     border-radius: 50%;
+    border: 3px solid #b5b4b4;  /* Added grey border */
+    padding: 5px;  /* Added 1px spacing between image and border */
+}
+
+/* Added new styles for the about button to match nav button */
+.about-button {
+    padding: 16px 32px;
+    border-radius: 8px;
+    border: none;
+    background-color: #e0e0e0;
+    color: #000;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.about-button:hover {
+    background-color: #cccccc;
 }
 
 
