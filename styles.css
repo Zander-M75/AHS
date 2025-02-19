@@ -83,6 +83,15 @@ body {
     background-color: #cccccc;  /* Slightly darker grey on hover */
 }
 
+.nav-button a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.nav-button a:visited {
+    color: inherit;
+}
+
 .hero-section {
     position: relative;
     width: 100%;
@@ -231,7 +240,7 @@ body {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Added subtle shadow */
 }
 
-.services-grid {
+/* .services-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
@@ -271,9 +280,9 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.8); /* Darker overlay */
-    backdrop-filter: blur(5px); /* Adds blur effect */
-    -webkit-backdrop-filter: blur(5px); /* For Safari support */
+    background: rgba(0, 0, 0, 0.8); 
+    backdrop-filter: blur(5px); 
+    -webkit-backdrop-filter: blur(5px); 
     color: white;
     padding: 1.5rem;
     display: flex;
@@ -292,35 +301,7 @@ body {
     transform: translateY(100%);
 }
 
-.services-intro {
-    max-width: 1000px;
-    margin: 0 auto;
-    text-align: center;
-    padding: 0 20px;
-}
 
-.services-title {
-    margin-bottom: 1.5rem;
-    line-height: 1.3;
-}
-
-.services-description {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: #333;
-    margin-bottom: 3rem;
-}
-
-.services-section {
-    padding-top: 5rem;
-}
-
-.service-title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin: 1rem 0;
-    color: #333;
-}
 .services-grid ul {
     text-align: left;
     padding: 0;
@@ -349,12 +330,297 @@ body {
     font-weight: 500;
 }
 
+ */
+
+ .services-section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+ .services-intro {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 20px;
+}
+
+
+.services-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 3rem;
+}
 
 
 
+.service-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 1rem 0;
+    color: #333;
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+}
 
+.services-container {
+    display: flex;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+    min-height: 400px;
+}
 
+.services-menu {
+    display: flex;
+    flex-direction: column;
+    min-width: 250px;
+    border-right: 1px solid #e0e0e0;
+}
 
+.service-tab {
+    padding: 1rem 1.5rem;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    color: #666;
+    position: relative;
+}
 
+.service-tab:hover {
+    color: #333;
+    background-color: #f5f5f5;
+}
+
+.service-tab.active {
+    color: #000;
+    font-weight: 600;
+}
+
+.service-tab.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background-color: #002A5C;
+}
+
+.services-content {
+    flex: 1;
+    padding: 1rem;
+}
+
+.service-details {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.service-details.active {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+    direction: rtl; /* This flips the order of the grid items */
+}
+
+.service-details img,
+.service-text {
+    direction: ltr; /* This keeps the content within each item reading left-to-right */
+}
+
+.service-details img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.service-text h3 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.service-text ul {
+    list-style-type: none;
+    padding: 1rem;  /* Added padding to give space between content and border */
+    margin-top: 1rem;
+    border: 1px solid #b5b4b4;  /* Added grey border */
+    border-radius: 8px;         /* Optional: rounds the corners */
+}
+
+.service-text li {
+    padding: 0.5rem 0;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.service-text li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #002A5C;
+    margin-right: 0.3rem;
+    border: 1px solid #b5b4b4;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.contact-section {
+    background-color: #f5f5f1;
+    padding: 4rem 2rem;
+}
+
+.contact-form-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+
+.contact-flex {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 3rem;
+    justify-content: center;
+}
+
+.contact-card {
+    background: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 2rem;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    margin: 0;  /* Remove any default margins */
+}
+
+.card-logo {
+    width: 120px;
+    height: auto;
+    margin-bottom: 1rem;
+}
+
+.contact-logo {
+    width: 100%;
+    height: auto;
+}
+
+.card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.card-info h3 {
+    color: #333;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.card-info p {
+    color: #666;
+    margin: 0;
+    font-size: 1rem;
+}
+
+.card-info a {
+    color: #666;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.card-info a:hover {
+    color: #333;
+}
+
+.contact-button-container {
+    flex-shrink: 0;
+}
+
+.contact-form-button {
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+    white-space: nowrap;  /* Prevents button text from wrapping */
+}
+
+.contact-form-button a {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #2c3e50;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.contact-form-button a:hover {
+    background-color: #34495e;
+}
+
+/* Update responsive design */
+@media (max-width: 768px) {
+    .contact-flex {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .contact-card {
+        width: 100%;
+        max-width: 350px;
+    }
+}
+
+.footer-section {
+    background-color: #2c3e50;
+    padding: 1.5rem 0;
+    margin-top: 2rem;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.footer-content p {
+    color: #fff;
+    font-size: 0.9rem;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.footer-content a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-content a:hover {
+    color: #ccc;
+}
 
 

@@ -11,33 +11,34 @@
 
     
 
-    <header class="header">
+    <header class="header" id="home">
         <nav class="navbar">
             <div class="logo">
                 <img src="./assets/images/AHS-Logo-only.png" alt="AHS-logo">
             </div>
             <div class="nav-links-container">
                 <ul class="nav-links">
-                    <li class="nav-link"><a href="#">Home</a></li>
-                    <li class="nav-link"><a href="#">About</a></li>
-                    <li class="nav-link"><a href="#">Procurement</a></li>
-                    <li class="nav-link"><a href="#">Contact</a></li>
+                    <li class="nav-link"><a href="#home">Home</a></li>
+                    <li class="nav-link"><a href="#about">About</a></li>
+                    <li class="nav-link"><a href="#procurement-section">Procurement</a></li>
+                    <li class="nav-link"><a href="#services">Services</a></li>
+                    <li class="nav-link"><a href="#contact">Contact</a></li>
                 </ul>
             </div>
             <div class="nav-button-container">
-                <button class="nav-button">Contact Us</button>
+                <button class="nav-button"><a href="#contact">Contact Us</a></button>
             </div>
         </nav>
     </header>
 
-    <section class="hero-section">
+    <section class="hero-section" >
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1 class="hero-title">Associated Hospitality Services Inc.</h1> 
         </div>
     </section>
 
-    <section class="about-section">
+    <section class="about-section" id="about">
         
             
            
@@ -66,7 +67,7 @@
 
     <!-- Procurement Section -->
 
-    <section class="procurement-section">
+    <section class="procurement-section" id="procurement-section">
         <div class="content-split">
             <div class="content-split-right">
                 <div class="image-container">
@@ -90,92 +91,72 @@
 
     <!-- Services Section -->
 
-    <section class="services-section">
+    <section class="services-section" id="services">
         <div class="services-intro">
             <h2 class="about-title">Comprehensive Hospitality Services for Seamless Property Improvements</h2>
             <p class="services-description">At Associated Hospitality Services, Inc., we offer a full suite of professional services designed to enhance and transform your property. With extensive industry expertise, our skilled team manages every phase of your renovation, ensuring a smooth, efficient, and high-quality process. From planning and design to purchasing and installation, our comprehensive services provide the support you need for a seamless property improvement experience—giving you confidence and peace of mind every step of the way. Explore our services below:</p>
         </div>
-        <div class="services-grid">
-            <div class="service-item">
-                <img src="./assets/images/room.png" alt="Design Services">
-                <h3 class="service-title">Architectural Services</h3>
-                <div class="service-overlay">
-                    <p class="overlay-text">Architectural services that bring your vision to life with precision and care.</p>
-                    <ul class="overlay-list">
-                        <li>Licensed in 29 states</li>
-                        <li>CAD Construction Drawings</li>
-                        <li>Master Planning</li>
-                        <li>Knowledge of Franchise Requirements</li>
-                    </ul>
-                </div>
+
+        <div class="services-container">
+            <div class="services-menu">
+                <button class="service-tab active" data-service="architectural">
+                    Architectural Services
+                </button>
+                <button class="service-tab" data-service="planning">
+                    Space Planning and Design
+                </button>
+                <button class="service-tab" data-service="procurement">
+                    Purchasing and Procurement
+                </button>
+                <button class="service-tab" data-service="installation">
+                    Installation Services
+                </button>
+                <button class="service-tab" data-service="operations">
+                    Hotel Operating Systems
+                </button>
+                <button class="service-tab" data-service="construction">
+                    Hotel Construction
+                </button>
             </div>
-            <div class="service-item">
-                <img src="./assets/images/strategic-planning.png" alt="Space Planning">
-                <h3 class="service-title">Space Planning and Design</h3>
-                <div class="service-overlay">
-                    <p class="overlay-text">Strategic space planning and design solutions that maximize functionality and aesthetics.</p>
-                    <ul class="overlay-list">
-                        <li>Complete presentation quality-Interior space planned design boards.</li>
-                        <li>Guestroom/Public Area- Color schemes.</li>
-                        <li>FF&E product specification and budget analysis</li>
-                    </ul>
-                </div>
+            <div class="services-content">
+                <!-- The service-details divs will be created dynamically by JavaScript -->
             </div>
-            <div class="service-item">
-                <img src="./assets/images/purchase.png" alt="Procurement">
-                <h3 class="service-title">Purchasing and Procurement</h3>
-                <div class="service-overlay">
-                    <p class="overlay-text">Strategic purchasing solutions that optimize your budget while maintaining quality.</p>
-                    <ul class="overlay-list">
-                        <li>Vendor Management</li>
-                        <li>Cost Analysis</li>
-                        <li>Quality Control</li>
-                        <li>Logistics Coordination</li>
-                    </ul>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+
+    <section class="contact-section" id="contact">
+        <div class="contact-intro">
+            <h2 class="about-title">Contact Us</h2>
+            <p>Let's connect! Reach out today via <strong>phone</strong> or <strong>email</strong>, or fill out our <strong>New Business Inquiry Form</strong>. Our team will be happy to assist you with tailored hospitality solutions.</p>
+        </div>
+        <div class="contact-form-container">
+            <div class="contact-flex">
+                <div class="contact-card">
+                    <div class="card-logo">
+                        <img src="./assets/images/AHS-Logo-only.png" alt="AHS Logo" class="contact-logo">
+                    </div>
+                    <div class="card-info">
+                        <h3>Associated Hospitality Services, Inc.</h3>
+                        <p>Tel: <a href="tel:845.919.9990">845.919.9990</a></p>
+                        <p>Email: <a href="mailto:joel@ahs-connect.com">joel@ahs-connect.com</a></p>
+                    </div>
                 </div>
-            </div>
-            <div class="service-item">
-                <img src="./assets/images/repair-tools.png" alt="Installation">
-                <h3 class="service-title">Installation Services</h3>
-                <div class="service-overlay">
-                    <p class="overlay-text">Professional installation services executed with precision and expertise.</p>
-                    <ul class="overlay-list">
-                        <li>Project Scheduling</li>
-                        <li>Quality Assurance</li>
-                        <li>Site Supervision</li>
-                        <li>Final Inspection</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="service-item">
-                <img src="./assets/images/desk-bell.png" alt="Operating Systems">
-                <h3 class="service-title">Hotel Operating Systems</h3>
-                <div class="service-overlay">
-                    <p class="overlay-text">Comprehensive hotel management systems to streamline operations.</p>
-                    <ul class="overlay-list">
-                        <li>PMS Integration</li>
-                        <li>Staff Training</li>
-                        <li>Process Optimization</li>
-                        <li>Technical Support</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="service-item">
-                <img src="./assets/images/construction.png" alt="Construction">
-                <h3 class="service-title">Hotel Construction</h3>
-                <div class="service-overlay">
-                    <p class="overlay-text">Full-service hotel construction management from ground up to renovation.</p>
-                    <ul class="overlay-list">
-                        <li>Project Management</li>
-                        <li>Budget Control</li>
-                        <li>Timeline Management</li>
-                        <li>Regulatory Compliance</li>
-                    </ul>
+                <div class="contact-button-container contact-card">
+                    <button class="contact-form-button">
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeRFXB92Fyner7mYSSgQJ2AGvgM4rrp-P1ewjf4d7DqowCgOA/viewform?usp=sharing" target="_blank">New Business Inquiry Form</a>
+                    </button>
                 </div>
             </div>
         </div>
     </section>
 
+    <section class="footer-section">
+        <div class="footer-content">
+            <p>&copy; 2024 Associated Hospitality Services, Inc. All rights reserved. | Tel: <a href="tel:845.919.9990">845.919.9990</a> | <a href="mailto:joel@ahs-connect.com">joel@ahs-connect.com</a></p>
+        </div>
+    </section>
 
     
     
