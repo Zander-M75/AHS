@@ -132,4 +132,22 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
         });
     });
+
+    // Add select menu functionality
+    const serviceSelect = document.querySelector('.service-select');
+    if (serviceSelect) {
+        serviceSelect.addEventListener('change', function(e) {
+            // Remove active class from all content
+            document.querySelectorAll('.service-details').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Add active class to selected content
+            const serviceId = `service-${this.value}`;
+            const contentElement = document.getElementById(serviceId);
+            if (contentElement) {
+                contentElement.classList.add('active');
+            }
+        });
+    }
 });

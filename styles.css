@@ -6,6 +6,8 @@ body {
     font-size: 18px;  /* Base font size increase */
 }
 
+
+
 .header {
     
     color: #fff;
@@ -574,6 +576,10 @@ body {
         box-sizing: border-box;
     }
 
+    p{
+        font-size: 1.3rem;
+    }
+
     /* Adjust navbar */
     .navbar {
         margin: 0;
@@ -682,6 +688,15 @@ body {
     .service-details.active {
         grid-template-columns: 1fr;
         gap: 1rem;
+        direction: ltr; /* Reset the direction for mobile */
+    }
+
+    .service-details img {
+        order: 2; /* Move image to bottom */
+    }
+
+    .service-text {
+        order: 1; /* Move text to top */
     }
 
     /* Contact section */
@@ -764,6 +779,65 @@ body {
         position: relative;
         z-index: 100;
     }
+
+    /* Services section mobile adjustments */
+    .services-menu .service-tab {
+        display: none;  /* Hide the buttons */
+    }
+
+    .services-menu .service-select,
+    .services-menu label {
+        display: block !important;
+    }
+
+    .services-menu .service-select {
+        width: 100%;
+        padding: 15px;
+        font-size: 1.1rem;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        background-color: white;
+        margin-bottom: 20px;
+        cursor: pointer;
+        appearance: none; /* Remove default appearance */
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 1rem center;
+        background-size: 1em;
+        padding-right: 2.5em;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .services-menu .service-select:focus {
+        outline: none;
+        border-color: #002A5C;
+        box-shadow: 0 0 0 3px rgba(0, 42, 92, 0.1);
+    }
+
+    .services-menu .service-select:hover {
+        border-color: #002A5C;
+    }
+
+    /* Style for the options when menu is open */
+    .services-menu .service-select option {
+        padding: 12px;
+        font-size: 1.1rem;
+    }
+
+    .services-menu {
+        padding: 10px;
+        border-bottom: none;  /* Remove the border we had for buttons */
+    }
+
+    .services-menu label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #333;
+        font-size: 1.1rem;
+    }
 }
 
 @media screen and (min-width: 769px) {
@@ -780,6 +854,19 @@ body {
 
     .about-title {
         font-size: 2rem;
+    }
+}
+
+/* Hide select menu and label on larger screens */
+.services-menu .service-select,
+.services-menu label {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .services-menu .service-select,
+    .services-menu label {
+        display: block !important;
     }
 }
 
