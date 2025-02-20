@@ -545,6 +545,22 @@ body {
 
 /* Mobile Styles */
 @media screen and (max-width: 768px) {
+    /* Add sticky nav styles */
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        z-index: 1000;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    /* Add padding to body to prevent content from hiding under fixed header */
+    body {
+        padding-top: 70px; /* Adjust this value based on your header height */
+    }
+
     /* Prevent horizontal scroll - more aggressive approach */
     html, body {
         max-width: 100%;
@@ -577,6 +593,7 @@ body {
         width: 90%;
         margin: 0 auto;
         padding: 20px;
+        margin-top: 80px;
     }
 
     /* Adjust all sections to prevent overflow */
@@ -685,6 +702,73 @@ body {
     /* Procurement section specific order */
     .procurement-section .content-split {
         flex-direction: column-reverse;
+    }
+
+    /* Hamburger menu styles */
+    .hamburger {
+        display: block;
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 5px;
+        z-index: 100;
+    }
+
+    .hamburger .bar {
+        display: block;
+        width: 25px;
+        height: 3px;
+        margin: 5px auto;
+        background-color: #000;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    /* Hide nav links and button by default */
+    .nav-links-container {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100vh;
+        background-color: white;
+        transition: 0.3s;
+        padding-top: 60px;
+        z-index: 99;
+    }
+
+    .nav-links-container.active {
+        left: 0;
+    }
+
+    .nav-button-container {
+        display: none; /* Hide contact button on mobile */
+    }
+
+    /* Adjust logo position */
+    .logo {
+        position: relative;
+        z-index: 100;
+    }
+}
+
+@media screen and (min-width: 769px) {
+    .hamburger {
+        display: none; /* Hide hamburger on desktop */
     }
 }
 

@@ -1,4 +1,22 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Hamburger menu functionality
+    const hamburger = document.querySelector('.hamburger');
+    const navLinksContainer = document.querySelector('.nav-links-container');
+    const navLinks = document.querySelectorAll('.nav-link a');
+
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navLinksContainer.classList.toggle('active');
+    });
+
+    // Close menu when clicking a link
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navLinksContainer.classList.remove('active');
+        });
+    });
+
     // Service content data
     const serviceContent = {
         architectural: {
