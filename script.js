@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Service content data
     const serviceContent = {
         architectural: {
-            image: './assets/images/room.png',
+            image: './assets/images/services/architectural-services.jpg',
             title: 'Architectural Services',
             description: 'Architectural services that bring your vision to life with precision and care.',
             features: [
