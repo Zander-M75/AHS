@@ -198,4 +198,28 @@ document.addEventListener('DOMContentLoaded', function() {
     track.addEventListener('mouseleave', () => {
         autoAdvance = setInterval(nextSlide, 5000);
     });
+
+    // Add smooth scrolling to all links that point to page sections
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            
+            // Get the target element
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return; // Skip if href="#"
+            
+            const targetElement = document.querySelector(targetId);
+            if (!targetElement) return; // Skip if target element not found
+
+            // Close mobile menu if open
+            hamburger.classList.remove('active');
+            navLinksContainer.classList.remove('active');
+
+            // Smooth scroll to target
+            targetElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+    });
 });
