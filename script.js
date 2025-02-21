@@ -150,4 +150,52 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // Carousel functionality
+    const track = document.querySelector('.carousel-track');
+    const slides = document.querySelectorAll('.carousel-slide');
+    const prevButton = document.querySelector('.carousel-prev');
+    const nextButton = document.querySelector('.carousel-next');
+    
+    let currentIndex = 0;
+    const slideCount = slides.length;
+
+    function updateCarousel() {
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % slideCount;
+        updateCarousel();
+    }
+
+    function prevSlide() {
+        currentIndex = (currentIndex - 1 + slideCount) % slideCount;
+        updateCarousel();
+    }
+
+    // Auto advance slides every 5 seconds
+    let autoAdvance = setInterval(nextSlide, 5000);
+
+    // Add click handlers for navigation buttons
+    nextButton.addEventListener('click', () => {
+        clearInterval(autoAdvance);
+        nextSlide();
+        autoAdvance = setInterval(nextSlide, 5000);
+    });
+
+    prevButton.addEventListener('click', () => {
+        clearInterval(autoAdvance);
+        prevSlide();
+        autoAdvance = setInterval(nextSlide, 5000);
+    });
+
+    // Optional: Pause auto-advance on hover
+    track.addEventListener('mouseenter', () => {
+        clearInterval(autoAdvance);
+    });
+
+    track.addEventListener('mouseleave', () => {
+        autoAdvance = setInterval(nextSlide, 5000);
+    });
 });
