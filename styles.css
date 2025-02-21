@@ -360,14 +360,16 @@ body {
 .service-details {
     display: none;
     animation: fadeIn 0.5s ease;
+    align-items: flex-start;
 }
 
 .service-details.active {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
-    align-items: center;
-    direction: rtl; /* This flips the order of the grid items */
+    align-items: start;
+    direction: rtl;
+    height: 100%;
 }
 
 .service-details img,
@@ -377,8 +379,25 @@ body {
 
 .service-details img {
     width: 100%;
-    height: auto;
+    aspect-ratio: unset;
     border-radius: 8px;
+    object-fit: cover;
+    margin-top: 1rem;
+}
+
+/* Special case for procurement service */
+#service-procurement {
+    align-items: flex-start;
+}
+
+#service-procurement .service-text {
+    max-height: 400px; /* Reduce height for procurement text */
+}
+
+#service-procurement img {
+    height: 400px; /* Match the text height */
+    aspect-ratio: unset;
+    margin-top: 1rem;
 }
 
 .service-text h3 {
@@ -702,7 +721,8 @@ body {
     }
 
     .service-details img {
-        order: 2; /* Move image to bottom */
+        aspect-ratio: 1 / 1; /* Maintain square aspect ratio on mobile */
+        width: 100%;
     }
 
     .service-text {
@@ -851,6 +871,17 @@ body {
 
     .service-tab .service-icon {
         display: none;  /* Hide icons on mobile */
+    }
+
+    #service-procurement .service-text,
+    #service-procurement img {
+        height: auto;
+        max-height: none;
+    }
+
+    #service-procurement img {
+        aspect-ratio: 1 / 1;
+        margin-top: 0;
     }
 }
 
@@ -1015,6 +1046,69 @@ body {
 
     .carousel-slide img {
         height: 300px;
+    }
+}
+
+/* Custom heights for each service */
+#service-architectural .service-text {
+    max-height: 450px;
+}
+
+#service-architectural img {
+    height: 307px;
+}
+
+#service-planning .service-text {
+    max-height: 350px;
+}
+
+#service-planning img {
+    height: 350px;
+}
+
+#service-procurement .service-text {
+    max-height: 400px;
+}
+
+#service-procurement img {
+    height: 500px;
+}
+
+#service-installation .service-text {
+    max-height: 380px;
+}
+
+#service-installation img {
+    height: 390px;
+}
+
+#service-operations .service-text {
+    max-height: 360px;
+}
+
+#service-operations img {
+    height: 390px;
+}
+
+#service-construction .service-text {
+    max-height: 330px;
+}
+
+#service-construction img {
+    height: 310px;
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 768px) {
+    .service-details .service-text,
+    .service-details img {
+        height: auto;
+        max-height: none;
+    }
+
+    .service-details img {
+        aspect-ratio: 1 / 1;
+        margin-top: 0;
     }
 }
 

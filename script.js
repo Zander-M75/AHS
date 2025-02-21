@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ]
         },
         planning: {
-            image: './assets/images/strategic-planning.png',
+            image: './assets/images/services/Space-Planning-Design.jpg',
             title: 'Space Planning and Design',
             description: 'Strategic space planning and design solutions that maximize functionality and aesthetics.',
             features: [
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ]
         },
         procurement: {
-            image: './assets/images/purchase.png',
+            image: './assets/images/services/Procurement.jpg',
             title: 'Purchasing and Procurement',
             description: 'Smart procurement strategies that maximize savings without compromising quality.',
             features: [
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ]
         },
         installation: {
-            image: './assets/images/repair-tools.png',
+            image: './assets/images/services/Installation.jpg',
             title: 'Installation Services',
             description: 'Professional installation services executed with precision and expertise.',
             features: [
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ]
         },
         operations: {
-            image: './assets/images/desk-bell.png',
+            image: './assets/images/services/Operating-System.jpg',
             title: 'Hotel Operating Systems',
             description: 'Comprehensive hotel management systems to streamline operations.',
             features: [
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ]
         },
         construction: {
-            image: './assets/images/construction.png',
+            image: './assets/images/services/Construction.jpg',
             title: 'Hotel Construction',
             description: 'Full-service hotel construction management from ground up to renovation.',
             features: [
