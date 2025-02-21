@@ -955,18 +955,17 @@ body {
 }
 
 .carousel-nav {
-    position: absolute;
-    bottom: 20px;
-    left: 0;
-    right: 0;
+    position: static;  /* Change from absolute to static */
+    padding: 1rem 0;   /* Add some padding */
     display: flex;
     justify-content: center;
     gap: 1rem;
+    background-color: white;  /* Add background color */
 }
 
 .carousel-prev,
 .carousel-next {
-    background: rgba(255, 255, 255, 0.8);
+    background: #e0e0e0;  /* Change to solid color for better visibility */
     border: none;
     border-radius: 50%;
     width: 40px;
@@ -981,7 +980,7 @@ body {
 
 .carousel-prev:hover,
 .carousel-next:hover {
-    background: rgba(255, 255, 255, 1);
+    background: #cccccc;  /* Darker shade on hover */
 }
 
 /* Mobile responsiveness */
