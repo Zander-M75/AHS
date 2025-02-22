@@ -174,20 +174,20 @@ document.addEventListener('DOMContentLoaded', function() {
         updateCarousel();
     }
 
-    // Auto advance slides every 5 seconds
-    let autoAdvance = setInterval(nextSlide, 5000);
+    // Auto advance slides every 3 seconds (changed from 5000 to 3000)
+    let autoAdvance = setInterval(nextSlide, 3000);
 
     // Add click handlers for navigation buttons
     nextButton.addEventListener('click', () => {
         clearInterval(autoAdvance);
         nextSlide();
-        autoAdvance = setInterval(nextSlide, 5000);
+        autoAdvance = setInterval(nextSlide, 3000);  // Changed from 5000 to 3000
     });
 
     prevButton.addEventListener('click', () => {
         clearInterval(autoAdvance);
         prevSlide();
-        autoAdvance = setInterval(nextSlide, 5000);
+        autoAdvance = setInterval(nextSlide, 3000);  // Changed from 5000 to 3000
     });
 
     // Optional: Pause auto-advance on hover
@@ -196,7 +196,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     track.addEventListener('mouseleave', () => {
-        autoAdvance = setInterval(nextSlide, 5000);
+        autoAdvance = setInterval(nextSlide, 3000);
     });
 
     // Add smooth scrolling to all links that point to page sections
