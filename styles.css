@@ -8,7 +8,7 @@ body {
     padding: 20px;
     font-size: 18px;  /* Base font size increase */
     position: relative;
-    background-color: #f5f5f1;
+    background-color: #ffffff;  /* Changed from #f5f5f1 to white */
 }
 
 /* Add the gradient pattern overlay */
@@ -21,14 +21,14 @@ body::before {
     bottom: 0;
     z-index: -1;  /* Place behind content */
     background-image: 
-        linear-gradient(30deg, #ffffff 12%, transparent 12.5%, transparent 87%, #ffffff 87.5%, #ffffff),
-        linear-gradient(150deg, #ffffff 12%, transparent 12.5%, transparent 87%, #ffffff 87.5%, #ffffff),
-        linear-gradient(30deg, #ffffff 12%, transparent 12.5%, transparent 87%, #ffffff 87.5%, #ffffff),
-        linear-gradient(150deg, #ffffff 12%, transparent 12.5%, transparent 87%, #ffffff 87.5%, #ffffff),
-        linear-gradient(60deg, #ffffff99 25%, transparent 25.5%, transparent 75%, #ffffff99 75%, #ffffff99);
+        linear-gradient(30deg, #f8f8f8 12%, transparent 12.5%, transparent 87%, #f8f8f8 87.5%, #f8f8f8),
+        linear-gradient(150deg, #f8f8f8 12%, transparent 12.5%, transparent 87%, #f8f8f8 87.5%, #f8f8f8),
+        linear-gradient(30deg, #f8f8f8 12%, transparent 12.5%, transparent 87%, #f8f8f8 87.5%, #f8f8f8),
+        linear-gradient(150deg, #f8f8f8 12%, transparent 12.5%, transparent 87%, #f8f8f8 87.5%, #f8f8f8),
+        linear-gradient(60deg, #f8f8f899 25%, transparent 25.5%, transparent 75%, #f8f8f899 75%, #f8f8f899);
     background-size: 60px 120px;  /* Slightly smaller pattern size */
     background-position: 0 0, 0 0, 30px 60px, 30px 60px, 0 0;  /* Adjusted positioning */
-    opacity: 0.5;  /* Increased from 0.3 to 0.5 */
+    opacity: 0.4;  /* Reduced from 0.5 for subtlety */
     pointer-events: none;  /* Allow clicks to pass through */
 }
 
@@ -171,6 +171,7 @@ body::before {
 
 .procurement-section {
     padding: 40px 20px;
+    background-color: #f8f8f8;  /* Changed from #f5f5f1 to match pattern */
 }
 
 .content-split {
@@ -285,24 +286,18 @@ body::before {
     transform: scaleX(1);
 }
 
-.procurement-section {
-    background-color: #f5f5f1;
-}
-
-
- .services-section {
+.services-section {
     padding-top: 5rem;
     padding-bottom: 5rem;
     
 }
 
- .services-intro {
+.services-intro {
     max-width: 1000px;
     margin: 0 auto;
     text-align: center;
     padding: 0 20px;
 }
-
 
 .services-description {
     font-size: 1.3rem;  /* Increased from 1.1rem */
@@ -310,8 +305,6 @@ body::before {
     color: #333;
     margin-bottom: 3rem;
 }
-
-
 
 .service-title {
     font-size: 1.5rem;
@@ -328,13 +321,21 @@ body::before {
     max-width: 1200px;
     margin: 2rem auto;
     min-height: 400px;
+    background: rgba(248, 248, 248, 0.5);  /* Updated to match new scheme */
+    backdrop-filter: blur(15px);  /* Increased blur from 10px to 15px */
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);  /* Added subtle border */
 }
 
 .services-menu {
     display: flex;
     flex-direction: column;
     min-width: 250px;
-    border-right: 1px solid #e0e0e0;
+    border-right: 1px solid rgba(224, 224, 224, 0.5);  /* Make border semi-transparent */
+    padding: 1rem;
 }
 
 .service-tab {
@@ -360,7 +361,7 @@ body::before {
 
 .service-tab:hover {
     color: #333;
-    background-color: #f5f5f5;
+    background-color: #f0f0f0;  /* Changed from #f5f5f5 to be slightly darker */
 }
 
 .service-tab.active {
@@ -799,7 +800,9 @@ body::before {
     /* Services section */
     .services-container {
         flex-direction: column;
-        min-height: auto;
+        padding: 1rem;
+        margin: 1rem;
+        gap: 1rem;
     }
 
     .services-menu {
@@ -1011,7 +1014,7 @@ body::before {
 
 .portfolio-section {
     padding: 4rem 2rem;
-    background-color: #f5f5f1;
+    background-color: #f8f8f8;  /* Changed from #f5f5f1 to match */
 }
 
 .portfolio-intro {
