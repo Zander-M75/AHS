@@ -72,7 +72,8 @@ body {
 }
 
 .nav-button-container {
-    margin-right: 300px;  /* Add space between nav links and button */
+    margin-right: 0px;  /* Add space between nav links and button */
+    margin-left: 100px;
 }
 
 .nav-button {
