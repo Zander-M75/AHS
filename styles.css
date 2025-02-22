@@ -580,7 +580,7 @@ body {
 
 /* Mobile Styles */
 @media screen and (max-width: 768px) {
-    /* Add sticky nav styles */
+    /* Update header styles */
     .header {
         position: fixed;
         top: 0;
@@ -589,11 +589,13 @@ body {
         background-color: white;
         z-index: 1000;
         box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        height: 80px; /* Set explicit height */
+        padding-bottom: 10px; /* Add padding to bottom */
     }
 
-    /* Add padding to body to prevent content from hiding under fixed header */
+    /* Adjust body padding to match header height */
     body {
-        padding-top: 70px; /* Adjust this value based on your header height */
+        padding-top: 70px; /* Match header height */
     }
 
     /* Prevent horizontal scroll - more aggressive approach */
@@ -616,7 +618,7 @@ body {
     /* Adjust navbar */
     .navbar {
         margin: 0;
-        padding: 10px;
+        padding: 10px 10px 20px 10px; /* Increase bottom padding */
         width: 100%;
     }
 
@@ -632,7 +634,7 @@ body {
         width: 90%;
         margin: 0 auto;
         padding: 20px;
-        margin-top: 80px;
+        margin-top: 80px; /* Add space between header and hero content */
     }
 
     /* Adjust all sections to prevent overflow */
