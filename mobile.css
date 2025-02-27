@@ -1,0 +1,478 @@
+@media screen and (max-width: 768px) {
+    .contact-section {
+        padding: 4rem 1rem;
+    }
+
+    .contact-flex {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .contact-card {
+        width: 100%;
+        max-width: none;
+        padding: 2rem;
+    }
+
+    .card-info h3 {
+        font-size: 1.4rem;
+    }
+
+    .card-info p {
+        font-size: 1.1rem;
+    }
+
+    .contact-form-button a {
+        padding: 1rem 1.5rem;
+        font-size: 1.1rem;
+    }
+
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        z-index: 1000;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        height: 80px;
+        padding-bottom: 10px;
+    }
+
+    body {
+        padding-top: 70px;
+    }
+
+    html, body {
+        max-width: 100%;
+        overflow-x: hidden;
+        margin: 0;
+        padding: 0;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    p {
+        font-size: 1.3rem;
+    }
+
+    .navbar {
+        margin: 0;
+        padding: 10px 10px 20px 10px;
+        width: 100%;
+    }
+
+    .hero-section {
+        width: 100vw;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0;
+    }
+
+    .hero-content {
+        width: 90%;
+        margin: 0 auto;
+        padding: 20px;
+        margin-top: 80px;
+    }
+
+    .about-section,
+    .procurement-section,
+    .services-section,
+    .contact-section {
+        width: 100%;
+        padding: 20px 10px;
+        margin: 0;
+    }
+
+    .content-split,
+    .content-split-text,
+    .content-split-image,
+    .services-intro,
+    .services-container,
+    .contact-form-container {
+        width: 100%;
+        max-width: 100%;
+        padding: 10px;
+        margin: 0;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    body {
+        font-size: 16px;
+    }
+
+    .navbar {
+        flex-direction: column;
+        margin-left: 0;
+        padding: 10px;
+    }
+
+    .nav-links-container {
+        margin: 20px 0;
+        width: 100%;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 40px;
+    }
+
+    .nav-button-container {
+        margin-right: 0;
+        width: 100%;
+    }
+
+    .hero-section {
+        height: 40vh;
+    }
+
+    .hero-title {
+        font-size: 36px;
+    }
+
+    .content-split {
+        flex-direction: column;
+        padding: 0 10px;
+    }
+
+    .services-container {
+        flex-direction: column;
+        padding: 1rem;
+        margin: 1rem;
+        gap: 1rem;
+    }
+
+    .services-menu {
+        border-right: none;
+        border-bottom: 1px solid #e0e0e0;
+        min-width: auto;
+    }
+
+    .service-details.active {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        direction: ltr;
+    }
+
+    .service-details img {
+        aspect-ratio: 1 / 1;
+        width: 100%;
+    }
+
+    .service-text {
+        order: 1;
+    }
+
+    .contact-flex {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .contact-card {
+        width: 100%;
+    }
+
+    .about-image {
+        border-radius: 20px;
+        height: auto;
+    }
+
+    .procurement-section .content-split {
+        flex-direction: column-reverse;
+    }
+
+    .hamburger {
+        display: block;
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 5px;
+        z-index: 100;
+    }
+
+    .hamburger .bar {
+        display: block;
+        width: 25px;
+        height: 3px;
+        margin: 5px auto;
+        background-color: #000;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .nav-links-container {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100vh;
+        background-color: white;
+        transition: 0.3s;
+        padding-top: 60px;
+        z-index: 99;
+    }
+
+    .nav-links-container.active {
+        left: 0;
+    }
+
+    .nav-button-container {
+        display: none;
+    }
+
+    .logo {
+        position: relative;
+        z-index: 100;
+    }
+
+    .services-menu .service-tab {
+        display: none;
+    }
+
+    .services-menu .service-select,
+    .services-menu label {
+        display: block;
+    }
+
+    .services-menu .service-select {
+        width: 100%;
+        padding: 15px;
+        font-size: 1.1rem;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        background-color: white;
+        margin-bottom: 20px;
+        cursor: pointer;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 1rem center;
+        background-size: 1em;
+        padding-right: 2.5em;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .services-menu .service-select:focus {
+        outline: none;
+        border-color: #002A5C;
+        box-shadow: 0 0 0 3px rgba(0, 42, 92, 0.1);
+    }
+
+    .services-menu .service-select:hover {
+        border-color: #002A5C;
+    }
+
+    .services-menu .service-select option {
+        padding: 12px;
+        font-size: 1.1rem;
+    }
+
+    .services-menu {
+        padding: 10px;
+        border-bottom: none;
+    }
+
+    .services-menu label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #333;
+        font-size: 1.1rem;
+    }
+
+    .service-tab .service-icon {
+        display: none;
+    }
+
+    #service-procurement .service-text,
+    #service-procurement img {
+        height: auto;
+        max-height: none;
+    }
+
+    #service-procurement img {
+        aspect-ratio: 1 / 1;
+        margin-top: 0;
+    }
+
+    .portfolio-container {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .partner-logos {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .partner-logo {
+        width: calc(50% - 1rem);
+    }
+
+    .carousel-slide img {
+        height: 300px;
+    }
+
+    .service-details .service-text,
+    .service-details img {
+        height: auto;
+        max-height: none;
+    }
+
+    .service-details img {
+        aspect-ratio: 1 / 1;
+        margin-top: 0;
+    }
+
+    .services-section {
+        padding: 2rem 1rem;
+    }
+
+    .services-intro {
+        padding: 0 1rem;
+    }
+
+    .services-description {
+        font-size: 1.1rem;
+        line-height: 1.5;
+    }
+
+    .services-container {
+        flex-direction: column;
+        padding: 1rem;
+        margin: 1rem 0;
+        gap: 1.5rem;
+    }
+
+    .services-menu {
+        border-right: none;
+        border-bottom: 1px solid rgba(224, 224, 224, 0.5);
+        padding: 0 0 1rem 0;
+        min-width: 100%;
+    }
+
+    .services-menu .service-select {
+        width: 100%;
+        padding: 1rem;
+        font-size: 1.1rem;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        background-color: white;
+        margin: 0.5rem 0;
+        appearance: none;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 1rem center;
+        background-size: 1em;
+    }
+
+    .service-select {
+        display: block;
+    }
+
+    .service-details.active {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .service-details img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 8px;
+        order: -1;
+    }
+
+    .service-text {
+        padding: 0;
+    }
+
+    .service-text h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .service-text ul {
+        margin: 1rem 0;
+        padding: 1rem;
+    }
+
+    .service-text li {
+        font-size: 1rem;
+        padding: 0.5rem 0;
+    }
+
+    #service-architectural .service-text,
+    #service-planning .service-text,
+    #service-procurement .service-text,
+    #service-installation .service-text,
+    #service-operations .service-text,
+    #service-construction .service-text,
+    #service-architectural img,
+    #service-planning img,
+    #service-procurement img,
+    #service-installation img,
+    #service-operations img,
+    #service-construction img {
+        height: auto;
+        max-height: none;
+    }
+
+    .service-text li {
+        padding-left: 2.5rem;
+        font-size: 1rem;
+    }
+
+    .service-text li::before {
+        left: 0.75rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .hero-title {
+        font-size: 28px;
+    }
+
+    .about-title {
+        font-size: 2rem;
+    }
+
+    .services-description {
+        font-size: 1rem;
+    }
+
+    .service-text h3 {
+        font-size: 1.3rem;
+    }
+
+    .services-container {
+        margin: 0;
+        padding: 0.5rem;
+    }
+}

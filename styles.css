@@ -418,13 +418,13 @@ body::before {
 }
 
 #service-procurement .service-text {
-    max-height: 400px; /* Reduce height for procurement text */
+    max-height: unset;  /* Remove height constraint */
+    height: auto;       /* Let it adjust to content */
+    overflow: visible;  /* Remove scrolling */
 }
 
 #service-procurement img {
-    height: 400px; /* Match the text height */
-    aspect-ratio: unset;
-    margin-top: 1rem;
+    height: 400px;     /* Keep image height consistent */
 }
 
 .service-text h3 {
@@ -432,10 +432,17 @@ body::before {
     font-size: 1.8rem;  /* Increased from 1.5rem */
 }
 
+.service-text {
+    padding: 0 1rem;
+    max-height: 450px;  /* Slightly reduced height */
+    overflow-y: auto;  /* Add scroll if content is too long */
+}
+
 .service-text ul {
     list-style-type: none;
     padding: 1rem;
     margin-top: 1rem;
+    margin-bottom: 1rem;  /* Add bottom margin */
     border: 1px solid #b5b4b4;
     border-radius: 8px;
 }
@@ -443,9 +450,9 @@ body::before {
 .service-text li {
     padding: 0.5rem 0;
     position: relative;
-    padding-left: 2rem; /* Increased from 1.5rem to give more space */
-    font-size: 1.1rem;
-    line-height: 1.4; /* Added line height for better readability */
+    padding-left: 2rem;
+    font-size: 1rem;  /* Slightly smaller font */
+    line-height: 1.4;
 }
 
 .service-text li::before {
@@ -1150,52 +1157,24 @@ body::before {
 }
 
 /* Custom heights for each service */
-#service-architectural .service-text {
-    max-height: 450px;
-}
-
-#service-architectural img {
-    height: 307px;
-}
-
-#service-planning .service-text {
-    max-height: 350px;
-}
-
-#service-planning img {
-    height: 350px;
-}
-
-#service-procurement .service-text {
-    max-height: 400px;
-}
-
-#service-procurement img {
-    height: 500px;
-}
-
-#service-installation .service-text {
-    max-height: 380px;
-}
-
-#service-installation img {
-    height: 390px;
-}
-
-#service-operations .service-text {
-    max-height: 360px;
-}
-
-#service-operations img {
-    height: 390px;
-}
-
+#service-architectural .service-text,
+#service-planning .service-text,
+#service-procurement .service-text,
+#service-installation .service-text,
+#service-operations .service-text,
 #service-construction .service-text {
-    max-height: 330px;
+    max-height: unset;  /* Remove height constraint */
+    height: auto;       /* Let it adjust to content */
+    overflow: visible;  /* Remove scrolling */
 }
 
+#service-architectural img,
+#service-planning img,
+#service-procurement img,
+#service-installation img,
+#service-operations img,
 #service-construction img {
-    height: 310px;
+    height: 400px;     /* Keep all images consistent */
 }
 
 /* Mobile Styles */
