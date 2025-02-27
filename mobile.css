@@ -253,7 +253,7 @@
 
     .services-menu .service-select,
     .services-menu label {
-        display: block;
+        display: block !important;
     }
 
     .services-menu .service-select {
@@ -392,7 +392,7 @@
     }
 
     .service-select {
-        display: block;
+        display: block !important;
     }
 
     .service-details.active {
