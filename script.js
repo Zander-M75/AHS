@@ -17,10 +17,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Service content data
+    // Service content data (corrected image paths)
     const serviceContent = {
         architectural: {
-            image: './assets/images/services/architectural-services.jpg',
+            image: 'images/services/architectural-services.jpg',
             title: 'Architectural Services',
             description: 'Architectural services that bring your vision to life with precision and care.',
             features: [
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ]
         },
         planning: {
-            image: './assets/images/services/Space-Planning-Design.jpg',
+            image: 'images/services/Space-Planning-Design.jpg',
             title: 'Space Planning and Design',
             description: 'Strategic space planning and design solutions that maximize functionality and aesthetics.',
             features: [
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ]
         },
         procurement: {
-            image: './assets/images/services/Procurement.jpg',
+            image: 'images/services/Procurement.jpg',
             title: 'Purchasing and Procurement',
             description: 'Smart procurement strategies that maximize savings without compromising quality.',
             features: [
@@ -50,11 +50,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Monitor Progress and delivery schedules with planned install dates for soft opening.',
                 'Reduce freight expenditures by using our freight management division.',
                 'Factory direct purchasing'
-                
             ]
         },
         installation: {
-            image: './assets/images/services/Installation.jpg',
+            image: 'images/services/Installation.jpg',
             title: 'Installation Services',
             description: 'Professional installation services executed with precision and expertise.',
             features: [
@@ -65,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ]
         },
         operations: {
-            image: './assets/images/services/Operating-System.jpg',
+            image: 'images/services/Operating-System.jpg',
             title: 'Hotel Operating Systems',
             description: 'Comprehensive hotel management systems to streamline operations.',
             features: [
@@ -76,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ]
         },
         construction: {
-            image: './assets/images/services/Construction.jpg',
+            image: 'images/services/Construction.jpg',
             title: 'Hotel Construction',
             description: 'Full-service hotel construction management from ground up to renovation.',
             features: [
@@ -174,23 +173,23 @@ document.addEventListener('DOMContentLoaded', function() {
         updateCarousel();
     }
 
-    // Auto advance slides every 3 seconds (changed from 5000 to 3000)
+    // Auto advance slides every 3 seconds
     let autoAdvance = setInterval(nextSlide, 3000);
 
     // Add click handlers for navigation buttons
     nextButton.addEventListener('click', () => {
         clearInterval(autoAdvance);
         nextSlide();
-        autoAdvance = setInterval(nextSlide, 3000);  // Changed from 5000 to 3000
+        autoAdvance = setInterval(nextSlide, 3000);
     });
 
     prevButton.addEventListener('click', () => {
         clearInterval(autoAdvance);
         prevSlide();
-        autoAdvance = setInterval(nextSlide, 3000);  // Changed from 5000 to 3000
+        autoAdvance = setInterval(nextSlide, 3000);
     });
 
-    // Optional: Pause auto-advance on hover
+    // Pause on hover
     track.addEventListener('mouseenter', () => {
         clearInterval(autoAdvance);
     });
@@ -199,7 +198,7 @@ document.addEventListener('DOMContentLoaded', function() {
         autoAdvance = setInterval(nextSlide, 3000);
     });
 
-    // Update the smooth scrolling event listener
+    // Smooth scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -210,17 +209,12 @@ document.addEventListener('DOMContentLoaded', function() {
             const targetElement = document.querySelector(targetId);
             if (!targetElement) return;
 
-            // Close mobile menu if open
             hamburger.classList.remove('active');
             navLinksContainer.classList.remove('active');
 
-            // Calculate header height for mobile
             const headerHeight = window.innerWidth <= 768 ? 70 : 0;
-            
-            // Get the target's position
             const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-            
-            // Scroll to target with header offset
+
             window.scrollTo({
                 top: targetPosition - headerHeight,
                 behavior: 'smooth'
