@@ -34,9 +34,9 @@ This website showcases AHS's comprehensive suite of hospitality services, includ
 ## 🛠 Technologies Used
 
 - **HTML5**: Semantic markup for structure
-- **CSS3**: Modern styling with flexbox, grid, animations, and backdrop filters
+- **CSS3**: Custom properties (light and dark themes), grid, scroll-snap, and motion that respects `prefers-reduced-motion`
 - **JavaScript (ES6)**: Interactive components and dynamic content
-- **Google Fonts**: Montserrat font family
+- **Archivo** (variable, self-hosted in `assets/fonts/`): single typeface; headings use its wider widths
 - **Google Forms**: Embedded business inquiry form
 
 ## 📁 File Structure
@@ -44,11 +44,12 @@ This website showcases AHS's comprehensive suite of hospitality services, includ
 ```
 AHS/
 ├── index.html          # Main HTML file
-├── styles.css          # Primary stylesheet (desktop)
-├── mobile.css          # Mobile-specific styles
-├── tablet.css          # Tablet-specific styles
+├── styles.css          # Tokens, base styles, and desktop layout
+├── tablet.css          # Overrides at <= 1024px
+├── mobile.css          # Overrides at <= 768px
 ├── script.js           # JavaScript functionality
-├── assets/             # Images and media files
+├── assets/             # Images, fonts, and media files
+│   ├── fonts/          # Archivo variable font (woff2)
 │   └── images/
 │       ├── AHS-Logo-only.png
 │       ├── hotel-hero.png
@@ -96,23 +97,24 @@ AHS/
 - Company logo
 - Navigation links (Home, History, Procurement, Services, Partners, Contact)
 - "Contact Us" CTA button
-- Responsive hamburger menu for mobile
+- Transparent over the hero, turns solid once you scroll past it
+- Full-screen menu behind a toggle at tablet and mobile sizes
 
 ### 2. Hero Section
-- Full-width hero image with overlay
-- Company name and tagline
-- Smooth parallax-style design
+- Full-bleed hero image with a gradient scrim
+- Company name set large, revealed line by line on load
+- Subtle scroll drift on the photo (browsers that support scroll-driven animations)
 
 ### 3. About/History Section
 - Company overview and history
 - Highlights key value propositions
 - Call-to-action button
-- Circular image with shadow effects
+- Photo that overlaps the bottom edge of the hero
 
 ### 4. Procurement Section
 - Detailed procurement services information
 - Multi-paragraph description
-- Featured image with rounded corners
+- Edge-to-edge image beside the copy
 - "Get In Touch" CTA button
 
 ### 5. Services Section
@@ -123,62 +125,64 @@ AHS/
   - Installation Services
   - Hotel Operating Systems
   - Hotel Construction
-- Interactive tab interface
+- Accessible tab interface (click or arrow keys) with a sliding indicator
+- Tabs scroll horizontally on smaller screens
 - Dynamic content loading
 - Service icons and images
 - Detailed feature lists
 
 ### 6. Portfolio/Partners Section
 - Trusted partner logos (Hilton, Marriott, IHG)
-- Auto-advancing image carousel
-- Manual navigation controls
-- Pause on hover functionality
+- Scroll-snap image gallery that auto-advances while on screen
+- Previous / next controls, swipe on touch devices
+- Pauses on hover, focus, or touch
 
 ### 7. Contact Section
 - Company contact information
 - Phone and email links
 - Embedded Google Forms for business inquiries
-- Styled contact cards with hover effects
+- Navy closing band with a contact card
 
 ### 8. Footer
 - Copyright information
 - Quick contact links
-- Professional dark theme
+- Continues the navy closing band
 
 ## 🎨 Customization
 
 ### Changing Colors
 
-The main color scheme can be modified in `styles.css`:
+Colors are CSS custom properties at the top of `styles.css`, with a second set for dark mode under `@media (prefers-color-scheme: dark)`:
 
 ```css
-/* Primary colors */
---navy-blue: #002A5C;      /* Brand color for accents */
---dark-gray: #2c3e50;      /* Footer and headers */
---light-gray: #e0e0e0;     /* Buttons and backgrounds */
---background: #f8f8f8;     /* Section backgrounds */
+--brand: #002a5c;     /* AHS logo navy: buttons, indicators, accents */
+--ink: #0b1a2e;       /* Headings */
+--ink-2: #3a4658;     /* Body text */
+--bg: #f6f7f9;        /* Page background */
+--bg-tint: #eceff4;   /* Alternate section background */
+--band: #002a5c;      /* Contact + footer band */
 ```
 
 ### Updating Content
 
-1. **Service Content**: Edit the `serviceContent` object in `script.js` (lines 21-88)
-2. **Partner Logos**: Replace images in the `images/` folder
-3. **Carousel Images**: Update image sources in `index.html` (lines 159-178)
-4. **Contact Information**: Modify contact details in `index.html` (lines 203-204)
+1. **Service Content**: Edit the `serviceContent` object in `script.js`
+2. **Partner Logos**: Replace images in `assets/images/hotel-logos/`
+3. **Gallery Images**: Update the `.gallery-slide` images in `index.html`
+4. **Contact Information**: Modify the contact card and footer in `index.html`
 
 ### Adding New Services
 
 1. Add service data to `serviceContent` object in `script.js`
-2. Add a new button in the services menu in `index.html`
-3. Add corresponding icon image to `images/` folder
+2. Add a matching `.service-tab` button in `index.html` (its `data-service`, `id="tab-<key>"` and `aria-controls="service-<key>"` must use the same key)
+3. Add the icon image to `assets/images/icons/`
 
 ## 📱 Responsive Design
 
 The website is fully responsive with breakpoints at:
 
-- **Desktop**: > 1200px (full layout)
-- **Tablet**: 769px - 1200px (adjusted spacing and fonts)
-- **Mobile**: ≤ 768px (stacked layout, hamburger menu)
+- **Desktop**: > 1024px (full layout, `styles.css`)
+- **Tablet**: ≤ 1024px (menu toggle, scrolling service tabs, `tablet.css`)
+- **Mobile**: ≤ 768px (single-column layout, `mobile.css`)
 
 Responsive features include:
 - Flexible grid and flexbox layouts

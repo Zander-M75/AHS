@@ -1,3 +1,159 @@
-@media screen and (min-width: 769px) and (max-width: 1024px) {
-    /* Add tablet-specific styles here if desired */
+/* ==========================================================================
+   Tablet (<= 1024px)
+   ========================================================================== */
+
+@media screen and (max-width: 1024px) {
+    /* ---------- Header: nav collapses into a full-height panel ---------- */
+
+    /* No backdrop-filter here: it would become the containing block for the fixed nav panel */
+    .site-header.is-solid,
+    .site-header.menu-active {
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+        background: var(--bg);
+    }
+
+    .nav-toggle {
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+        width: 44px;
+        height: 44px;
+        margin-left: auto;
+        margin-right: -10px;
+        padding: 0;
+        border: 0;
+        background: none;
+        color: inherit;
+        cursor: pointer;
+    }
+
+    .nav-toggle .bar {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: currentColor;
+        transition: transform 0.35s var(--ease);
+    }
+
+    .nav-toggle[aria-expanded="true"] .bar:first-child {
+        transform: translateY(4px) rotate(45deg);
+    }
+
+    .nav-toggle[aria-expanded="true"] .bar:last-child {
+        transform: translateY(-4px) rotate(-45deg);
+    }
+
+    .site-nav {
+        position: fixed;
+        inset: var(--header-h) 0 0;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: space-between;
+        gap: 32px;
+        padding: 16px var(--gutter) calc(32px + env(safe-area-inset-bottom));
+        overflow-y: auto;
+        background: var(--bg);
+        color: var(--ink);
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(-8px);
+        transition: opacity 0.3s ease, transform 0.45s var(--ease), visibility 0s linear 0.45s;
+    }
+
+    .site-nav.is-open {
+        visibility: visible;
+        opacity: 1;
+        transform: none;
+        transition: opacity 0.3s ease, transform 0.45s var(--ease), visibility 0s;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 0;
+        margin: 0;
+    }
+
+    .nav-links a {
+        padding: 14px 0;
+        border-bottom: 1px solid var(--line);
+        font-size: clamp(1.75rem, 1rem + 3vw, 2.5rem);
+        font-stretch: 112%;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        opacity: 1;
+    }
+
+    .nav-links a::after {
+        display: none;
+    }
+
+    .nav-cta {
+        width: 100%;
+        min-height: 56px;
+    }
+
+    /* ---------- About ---------- */
+
+    .about-copy {
+        grid-column: 1 / span 7;
+    }
+
+    .about-media {
+        grid-column: 8 / span 5;
+        margin-top: calc(-1 * var(--section-y) - 64px);
+    }
+
+    /* ---------- Procurement ---------- */
+
+    .procurement-media {
+        min-height: 560px;
+    }
+
+    /* ---------- Services: tabs become a horizontal strip ---------- */
+
+    .service-tabs {
+        grid-template-columns: none;
+        grid-auto-flow: column;
+        grid-auto-columns: minmax(168px, 1fr);
+        margin-inline: calc(-1 * var(--gutter));
+        padding-inline: var(--gutter);
+        scroll-padding-inline: var(--gutter);
+        overflow-x: auto;
+        scroll-snap-type: x proximity;
+        scrollbar-width: none;
+    }
+
+    .service-tabs::-webkit-scrollbar {
+        display: none;
+    }
+
+    .service-tab {
+        scroll-snap-align: start;
+    }
+
+    .service-panel {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+
+    /* ---------- Partners ---------- */
+
+    .partners-head {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 40px;
+    }
+
+    .partner-logos {
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+    }
+
+    /* ---------- Contact ---------- */
+
+    .contact-grid {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 48px;
+    }
 }
