@@ -27,7 +27,7 @@ This website showcases AHS's comprehensive suite of hospitality services, includ
 - **Image Carousel**: Auto-advancing carousel displaying portfolio projects
 - **Animated Elements**: Hover effects, transitions, and fade-in animations
 - **Partner Showcase**: Display of trusted industry partners (Hilton, Marriott, IHG)
-- **Contact Integration**: Direct phone/email links and embedded Google Form
+- **Contact Integration**: Direct phone/email links and an inquiry form that emails AHS (via Web3Forms)
 - **Modern UI/UX**: Clean, professional design with geometric background pattern
 - **Hamburger Menu**: Mobile-friendly collapsible navigation
 
@@ -37,7 +37,7 @@ This website showcases AHS's comprehensive suite of hospitality services, includ
 - **CSS3**: Custom properties (light and dark themes), grid, scroll-snap, and motion that respects `prefers-reduced-motion`
 - **JavaScript (ES6)**: Interactive components and dynamic content
 - **Archivo** (variable, self-hosted in `assets/fonts/`): single typeface; headings use its wider widths
-- **Google Forms**: Embedded business inquiry form
+- **Web3Forms**: Delivers inquiry form submissions by email
 
 ## 📁 File Structure
 
@@ -140,8 +140,9 @@ AHS/
 ### 7. Contact Section
 - Company contact information
 - Phone and email links
-- Embedded Google Forms for business inquiries
-- Navy closing band with a contact card
+- New Business Inquiry Form (name, phone number, email, message) that emails joel@ahs-connect.com
+- Inline validation and sending / sent / error states
+- Navy closing band
 
 ### 8. Footer
 - Copyright information
@@ -176,6 +177,25 @@ Colors are CSS custom properties at the top of `styles.css`, with a second set f
 2. Add a matching `.service-tab` button in `index.html` (its `data-service`, `id="tab-<key>"` and `aria-controls="service-<key>"` must use the same key)
 3. Add the icon image to `assets/images/icons/`
 
+## ✉️ Inquiry Form
+
+The form in the Contact section is sent to [Web3Forms](https://web3forms.com), which emails each submission to joel@ahs-connect.com (the address the access key was created with). There is no server code; the browser posts straight to Web3Forms.
+
+**Settings** are the hidden inputs at the top of the form in `index.html`:
+
+```html
+<input type="hidden" name="access_key" value="...">          <!-- Web3Forms key; decides where emails go -->
+<input type="hidden" name="subject" value="New website inquiry">  <!-- script.js adds the visitor's name -->
+<input type="hidden" name="from_name" value="AHS Website">
+```
+
+- The access key is meant to be public (it is visible in the page source on every Web3Forms site). It can only send mail to Joel's address.
+- To change where inquiries go, update the email in the Web3Forms dashboard or create a new key for the new address.
+- Spam: the hidden `botcheck` checkbox is Web3Forms' honeypot; submissions with it checked are discarded. Web3Forms also runs its own spam filtering.
+- Without JavaScript, the form still posts to Web3Forms and the visitor sees Web3Forms' confirmation page.
+
+**After deploying**, send a test inquiry and confirm it reaches Joel's inbox. His mail passes through Proofpoint before Microsoft 365, so if the test doesn't arrive, check the Proofpoint quarantine and add Web3Forms as an allowed sender.
+
 ## 📱 Responsive Design
 
 The website is fully responsive with breakpoints at:
@@ -205,7 +225,7 @@ Responsive features include:
 
 - **Phone**: [845.919.9990](tel:845.919.9990)
 - **Email**: [joel@ahs-connect.com](mailto:joel@ahs-connect.com)
-- **Inquiry Form**: [New Business Inquiry Form](https://docs.google.com/forms/d/e/1FAIpQLSeRFXB92Fyner7mYSSgQJ2AGvgM4rrp-P1ewjf4d7DqowCgOA/viewform)
+- **Inquiry Form**: New Business Inquiry Form in the Contact section of the site
 
 ---
 

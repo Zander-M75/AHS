@@ -52,11 +52,20 @@
     }
 
     .about-media {
-        margin-top: 0;
+        padding: 0 0 16% 12%;
     }
 
-    .about-media img {
+    .about-photo img {
         aspect-ratio: 1 / 1;
+    }
+
+    .about-photo-inset {
+        width: 50%;
+        border-width: 6px;
+    }
+
+    .about-photo-inset img {
+        aspect-ratio: 3 / 2;
     }
 
     /* ---------- Procurement ---------- */
@@ -86,6 +95,10 @@
 
     .lead {
         font-size: 1rem;
+    }
+
+    .services-feature img {
+        aspect-ratio: 4 / 3;
     }
 
     .service-tabs {

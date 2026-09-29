@@ -61,9 +61,14 @@
                     <p>We go beyond the expected, turning visionary concepts into reality. As dedicated collaborators and industry leaders, we craft innovative, enduring designs that deliver tangible, long-term results.</p>
                     <a class="btn btn-outline" href="#contact">Learn More</a>
                 </div>
-                <figure class="about-media" data-reveal>
-                    <img src="./assets/images/simple-room.png" alt="about-us-image" width="1024" height="1024" loading="lazy" decoding="async">
-                </figure>
+                <div class="about-media" data-reveal>
+                    <figure class="about-photo">
+                        <img src="./assets/images/simple-room.png" alt="about-us-image" width="1024" height="1024" loading="lazy" decoding="async">
+                    </figure>
+                    <figure class="about-photo about-photo-inset">
+                        <img src="./assets/images/hotel-room-20.jpg" alt="Hotel guest room with warm accent lighting" width="750" height="500" loading="lazy" decoding="async">
+                    </figure>
+                </div>
             </div>
         </section>
 
@@ -90,6 +95,10 @@
                     <h2 class="title">Comprehensive Hospitality Services for Seamless Property Improvements</h2>
                     <p class="lead">At Associated Hospitality Services, Inc., we offer a full suite of professional services designed to enhance and transform your property. With extensive industry expertise, our skilled team manages every phase of your renovation, ensuring a smooth, efficient, and high-quality process. From planning and design to purchasing and installation, our comprehensive services provide the support you need for a seamless property improvement experience—giving you confidence and peace of mind every step of the way.</p>
                 </div>
+
+                <figure class="services-feature" data-reveal>
+                    <img src="./assets/images/hotel-21.jpg" alt="Hotel lobby lounge with wood-slat walls" width="7008" height="4672" loading="lazy" decoding="async">
+                </figure>
 
                 <div class="services-explorer" data-reveal>
                     <p class="services-cue"><strong>Explore our services below:</strong></p>
@@ -173,13 +182,60 @@
                 <div class="contact-intro" data-reveal>
                     <h2 class="title contact-title">Contact Us</h2>
                     <p>Let's connect! Reach out today via <strong>phone</strong> or <strong>email</strong>, or fill out our <strong>New Business Inquiry Form</strong>. Our team will be happy to assist you with tailored hospitality solutions.</p>
+                    <div class="contact-details">
+                        <img src="./assets/images/AHS-Logo-only.png" alt="AHS Logo" class="contact-logo" width="275" height="103" loading="lazy" decoding="async">
+                        <h3>Associated Hospitality Services, Inc.</h3>
+                        <p class="contact-row"><span class="contact-label">Tel:</span> <a href="tel:845.919.9990">845.919.9990</a></p>
+                        <p class="contact-row"><span class="contact-label">Email:</span> <a href="mailto:joel@ahs-connect.com">joel@ahs-connect.com</a></p>
+                    </div>
                 </div>
                 <div class="contact-card" data-reveal>
-                    <img src="./assets/images/AHS-Logo-only.png" alt="AHS Logo" class="contact-logo" width="275" height="103" loading="lazy" decoding="async">
-                    <h3>Associated Hospitality Services, Inc.</h3>
-                    <p class="contact-row"><span class="contact-label">Tel:</span> <a href="tel:845.919.9990">845.919.9990</a></p>
-                    <p class="contact-row"><span class="contact-label">Email:</span> <a href="mailto:joel@ahs-connect.com">joel@ahs-connect.com</a></p>
-                    <a class="btn btn-light btn-block" href="https://docs.google.com/forms/d/e/1FAIpQLSeRFXB92Fyner7mYSSgQJ2AGvgM4rrp-P1ewjf4d7DqowCgOA/viewform?usp=sharing" target="_blank" rel="noopener">New Business Inquiry Form</a>
+                    <!-- Submissions go to Web3Forms, which emails them to the address the access key was created for (joel@ahs-connect.com) -->
+                    <form class="inquiry-form" id="inquiry-form" action="https://api.web3forms.com/submit" method="post" novalidate>
+                        <input type="hidden" name="access_key" value="ffdffc57-6f16-46e8-ba72-39e82446e36e">
+                        <input type="hidden" name="subject" value="New website inquiry">
+                        <input type="hidden" name="from_name" value="AHS Website">
+
+                        <h3 class="form-title">New Business Inquiry Form</h3>
+
+                        <div class="field">
+                            <label for="inq-name">Name</label>
+                            <input id="inq-name" name="name" type="text" autocomplete="name" maxlength="100" required aria-describedby="inq-name-error">
+                            <p class="field-error" id="inq-name-error" hidden></p>
+                        </div>
+
+                        <div class="field">
+                            <label for="inq-phone">Phone Number</label>
+                            <input id="inq-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="30" required aria-describedby="inq-phone-error">
+                            <p class="field-error" id="inq-phone-error" hidden></p>
+                        </div>
+
+                        <div class="field">
+                            <label for="inq-email">Email</label>
+                            <input id="inq-email" name="email" type="email" autocomplete="email" maxlength="254" required aria-describedby="inq-email-error">
+                            <p class="field-error" id="inq-email-error" hidden></p>
+                        </div>
+
+                        <div class="field">
+                            <label for="inq-message">Message</label>
+                            <textarea id="inq-message" name="message" rows="5" maxlength="1000" required aria-describedby="inq-message-count inq-message-error"></textarea>
+                            <div class="field-meta">
+                                <p class="field-error" id="inq-message-error" hidden></p>
+                                <p class="char-count" id="inq-message-count"><span>0</span> / 1000</p>
+                            </div>
+                        </div>
+
+                        <!-- Web3Forms spam trap: hidden from people, submissions with it checked are discarded -->
+                        <input class="hp-field" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+                        <button class="btn btn-light btn-block" type="submit">Send Inquiry</button>
+                        <p class="form-status" role="status" aria-live="polite"></p>
+                    </form>
+
+                    <div class="form-success" id="inquiry-success" tabindex="-1" hidden>
+                        <h3>Thank you</h3>
+                        <p>Your inquiry has been sent. Our team will be in touch soon.</p>
+                    </div>
                 </div>
             </div>
         </section>

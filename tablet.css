@@ -98,12 +98,11 @@
     /* ---------- About ---------- */
 
     .about-copy {
-        grid-column: 1 / span 7;
+        grid-column: 1 / span 6;
     }
 
     .about-media {
-        grid-column: 8 / span 5;
-        margin-top: calc(-1 * var(--section-y) - 64px);
+        grid-column: 7 / span 6;
     }
 
     /* ---------- Procurement ---------- */
@@ -112,7 +111,29 @@
         min-height: 560px;
     }
 
-    /* ---------- Services: tabs become a horizontal strip ---------- */
+    /* ---------- Services: intro stacks, tabs become a horizontal strip ---------- */
+
+    .services-intro {
+        grid-template-columns: minmax(0, 1fr);
+        row-gap: 28px;
+    }
+
+    .services-intro .title,
+    .services-intro .lead {
+        grid-column: 1;
+    }
+
+    .services-intro .title {
+        max-width: 24ch;
+    }
+
+    .services-intro .lead {
+        padding-top: 0;
+    }
+
+    .services-feature img {
+        aspect-ratio: 16 / 9;
+    }
 
     .service-tabs {
         grid-template-columns: none;
@@ -153,7 +174,11 @@
     /* ---------- Contact ---------- */
 
     .contact-grid {
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-        gap: 48px;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 56px;
+    }
+
+    .contact-card {
+        max-width: 640px;
     }
 }

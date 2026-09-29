@@ -1,15 +1,19 @@
 document.addEventListener('DOMContentLoaded', function() {
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-    // Header: transparent over the hero, solid once the hero scrolls away
+    // Header: transparent over the hero photo, solid as soon as the hero title
+    // would start sliding under it (so the nav never sits on top of the title)
     const header = document.querySelector('.site-header');
-    const hero = document.querySelector('.hero');
+    const heroTitle = document.querySelector('.hero-title');
 
-    if (header && hero && 'IntersectionObserver' in window) {
+    if (header && heroTitle && 'IntersectionObserver' in window) {
         const headerObserver = new IntersectionObserver(([entry]) => {
-            header.classList.toggle('is-solid', !entry.isIntersecting);
-        }, { rootMargin: `-${header.offsetHeight + 120}px 0px 0px 0px` });
-        headerObserver.observe(hero);
+            header.classList.toggle('is-solid', entry.intersectionRatio < 0.99);
+        }, {
+            rootMargin: `-${header.offsetHeight + 32}px 0px 0px 0px`,
+            threshold: [0, 0.99]
+        });
+        headerObserver.observe(heroTitle);
     } else if (header) {
         header.classList.add('is-solid');
     }
@@ -254,6 +258,118 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     reduceMotion.addEventListener('change', startAuto);
+
+    // Inquiry form: validates in the browser, then posts to Web3Forms without leaving the page
+    const inquiryForm = document.getElementById('inquiry-form');
+    if (inquiryForm) {
+        const submitButton = inquiryForm.querySelector('button[type="submit"]');
+        const formStatus = inquiryForm.querySelector('.form-status');
+        const successPanel = document.getElementById('inquiry-success');
+        const messageField = inquiryForm.elements.namedItem('message');
+        const charCount = inquiryForm.querySelector('.char-count span');
+        const fields = ['name', 'phone', 'email', 'message'].map(name => inquiryForm.elements.namedItem(name));
+
+        const errorText = {
+            name: 'Please enter your name.',
+            phone: 'Please enter a valid phone number.',
+            email: 'Please enter a valid email address.',
+            message: 'Please enter a message.'
+        };
+        const fallbackError = 'Something went wrong and your message wasn\'t sent. Please try again, or email <a href="mailto:joel@ahs-connect.com">joel@ahs-connect.com</a>.';
+
+        function validate(field) {
+            const value = field.value.trim();
+            let valid = value !== '';
+            if (valid && field.name === 'email') valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+            if (valid && field.name === 'phone') {
+                const digits = value.replace(/\D/g, '').length;
+                valid = digits >= 7 && digits <= 20;
+            }
+            return valid ? '' : errorText[field.name];
+        }
+
+        function showFieldError(field, message) {
+            const wrapper = field.closest('.field');
+            const error = wrapper.querySelector('.field-error');
+            wrapper.classList.toggle('has-error', Boolean(message));
+            if (message) {
+                field.setAttribute('aria-invalid', 'true');
+            } else {
+                field.removeAttribute('aria-invalid');
+            }
+            error.textContent = message;
+            error.hidden = !message;
+        }
+
+        function setStatus(html, isError) {
+            formStatus.innerHTML = html;
+            formStatus.classList.toggle('is-error', isError);
+        }
+
+        fields.forEach(field => {
+            field.addEventListener('blur', () => {
+                if (field.value.trim() !== '') showFieldError(field, validate(field));
+            });
+            field.addEventListener('input', () => {
+                if (field.closest('.field').classList.contains('has-error')) showFieldError(field, validate(field));
+            });
+        });
+
+        messageField.addEventListener('input', () => {
+            const length = messageField.value.length;
+            charCount.textContent = length;
+            charCount.parentElement.classList.toggle('is-near-limit', length >= 900);
+        });
+
+        inquiryForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            setStatus('', false);
+
+            let firstInvalid = null;
+            fields.forEach(field => {
+                const message = validate(field);
+                showFieldError(field, message);
+                if (message && !firstInvalid) firstInvalid = field;
+            });
+            if (firstInvalid) {
+                firstInvalid.focus();
+                return;
+            }
+
+            const data = new FormData(inquiryForm);
+            data.set('subject', `New website inquiry from ${data.get('name').trim()}`);
+
+            const label = submitButton.textContent;
+            submitButton.disabled = true;
+            submitButton.setAttribute('aria-busy', 'true');
+            submitButton.textContent = 'Sending...';
+
+            try {
+                const response = await fetch(inquiryForm.action, {
+                    method: 'POST',
+                    body: data
+                });
+                const result = await response.json().catch(() => ({}));
+
+                if (response.ok && result.success) {
+                    inquiryForm.hidden = true;
+                    successPanel.hidden = false;
+                    successPanel.focus();
+                    return;
+                }
+
+                // Web3Forms explains failures (bad key, limits) in result.message; keep that out of the visitor's view
+                console.error('Inquiry form not sent:', result.message || response.status);
+                setStatus(fallbackError, true);
+            } catch (error) {
+                setStatus(fallbackError, true);
+            } finally {
+                submitButton.disabled = false;
+                submitButton.removeAttribute('aria-busy');
+                submitButton.textContent = label;
+            }
+        });
+    }
 
     // Reveal sections as they scroll into view
     const revealTargets = document.querySelectorAll('[data-reveal]');
