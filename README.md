@@ -211,6 +211,26 @@ Responsive features include:
 - Touch-friendly buttons and links
 - Optimized image sizes
 
+## 🚢 Deployment
+
+The site deploys to GoDaddy automatically. `.github/workflows/deploy.yml` uploads changed files over FTPS whenever `main` changes, so merging a pull request into `main` publishes it. A deploy can also be started by hand from the repo's **Actions** tab → **Deploy to GoDaddy** → **Run workflow**.
+
+**One-time setup** (repository secrets, set with the GitHub CLI or under Settings → Secrets and variables → Actions):
+
+```bash
+gh secret set FTP_SERVER   --repo Zander-M75/AHS   # host from cPanel > FTP Accounts > Configure FTP Client
+gh secret set FTP_USERNAME --repo Zander-M75/AHS
+gh secret set FTP_PASSWORD --repo Zander-M75/AHS
+```
+
+Files go into `public_html/` by default. If the FTP account opens directly inside `public_html` (its path in cPanel ends in `/public_html`), point the upload at the login folder instead:
+
+```bash
+gh variable set FTP_SERVER_DIR --repo Zander-M75/AHS --body "./"
+```
+
+`README.md`, the workflow itself, and images the site doesn't reference are excluded from the upload (see the `exclude` list in the workflow). If one of those images is put to use later, remove it from that list.
+
 ## 🌐 Browser Support
 
 - Chrome (latest)
