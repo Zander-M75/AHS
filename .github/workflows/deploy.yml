@@ -26,31 +26,52 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    env:
+      SERVER_DIR: ${{ vars.FTP_SERVER_DIR || 'public_html/' }}
+      # Repo-only files and images the site doesn't use stay off the server
+      EXCLUDE: |
+        **/.git*
+        **/.git*/**
+        **/node_modules/**
+        **/.DS_Store
+        README.md
+        assets/images/AHS-Logo-bg.png
+        assets/images/architecture.png
+        assets/images/lobby-clip.jpg
+        assets/images/lobby-clipart.png
+        assets/images/portfolio-images/IHG-room.jpeg
+        assets/images/portfolio-images/Marriot-room.png
+        assets/images/services/Purchasing.jpeg
     steps:
       - name: Check out the site
         uses: actions/checkout@v7
 
+      # GoDaddy's FTP login is slow (about 5s) and occasionally hangs outright,
+      # so allow 60s per operation and retry once if the first attempt fails.
+      # Verbose logs show which FTP command stalled if it happens again.
       - name: Upload changed files over FTPS
+        id: upload
+        continue-on-error: true
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
-          server-dir: ${{ vars.FTP_SERVER_DIR || 'public_html/' }}
-          # GoDaddy can take several seconds to answer a login; the 30s default timed out on the first deploy
+          server-dir: ${{ env.SERVER_DIR }}
           timeout: 60000
-          # Repo-only files and images the site doesn't use stay off the server
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/node_modules/**
-            **/.DS_Store
-            README.md
-            assets/images/AHS-Logo-bg.png
-            assets/images/architecture.png
-            assets/images/lobby-clip.jpg
-            assets/images/lobby-clipart.png
-            assets/images/portfolio-images/IHG-room.jpeg
-            assets/images/portfolio-images/Marriot-room.png
-            assets/images/services/Purchasing.jpeg
+          log-level: verbose
+          exclude: ${{ env.EXCLUDE }}
+
+      - name: Retry upload
+        if: steps.upload.outcome == 'failure'
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          server-dir: ${{ env.SERVER_DIR }}
+          timeout: 60000
+          log-level: verbose
+          exclude: ${{ env.EXCLUDE }}
