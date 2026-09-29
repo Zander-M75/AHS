@@ -40,6 +40,7 @@ jobs:
           server-dir: ${{ vars.FTP_SERVER_DIR || 'public_html/' }}
           # GoDaddy can take several seconds to answer a login; the 30s default timed out on the first deploy
           timeout: 60000
+          log-level: verbose
           # Repo-only files and images the site doesn't use stay off the server
           exclude: |
             **/.git*
