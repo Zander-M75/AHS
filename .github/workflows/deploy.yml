@@ -1,0 +1,54 @@
+# Uploads the site to GoDaddy hosting whenever main changes.
+#
+# Needs these repository secrets (Settings > Secrets and variables > Actions):
+#   FTP_SERVER    FTP host name shown in cPanel > FTP Accounts > Configure FTP Client
+#   FTP_USERNAME  FTP account username
+#   FTP_PASSWORD  FTP account password
+# Optional repository variable:
+#   FTP_SERVER_DIR  Folder to upload into, relative to where the FTP account logs in.
+#                   Defaults to public_html/. Use ./ if the FTP account opens directly in public_html.
+#
+# Only changed files are uploaded; the action keeps a small .ftp-deploy-sync-state.json
+# file on the server to track what is already there.
+
+name: Deploy to GoDaddy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-godaddy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out the site
+        uses: actions/checkout@v7
+
+      - name: Upload changed files over FTPS
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          server-dir: ${{ vars.FTP_SERVER_DIR || 'public_html/' }}
+          # Repo-only files and images the site doesn't use stay off the server
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/.DS_Store
+            README.md
+            assets/images/AHS-Logo-bg.png
+            assets/images/architecture.png
+            assets/images/lobby-clip.jpg
+            assets/images/lobby-clipart.png
+            assets/images/portfolio-images/IHG-room.jpeg
+            assets/images/portfolio-images/Marriot-room.png
+            assets/images/services/Purchasing.jpeg
