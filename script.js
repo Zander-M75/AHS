@@ -17,10 +17,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Service content data (corrected image paths)
+    // Service content data
     const serviceContent = {
         architectural: {
-            image: 'images/services/architectural-services.jpg',
+            image: './assets/images/services/architectural-services.jpg',
             title: 'Architectural Services',
             description: 'Architectural services that bring your vision to life with precision and care.',
             features: [
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ]
         },
         planning: {
-            image: 'images/services/Space-Planning-Design.jpg',
+            image: './assets/images/services/Space-Planning-Design.jpg',
             title: 'Space Planning and Design',
             description: 'Strategic space planning and design solutions that maximize functionality and aesthetics.',
             features: [
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ]
         },
         procurement: {
-            image: 'images/services/Procurement.jpg',
+            image: './assets/images/services/Procurement.jpg',
             title: 'Purchasing and Procurement',
             description: 'Smart procurement strategies that maximize savings without compromising quality.',
             features: [
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ]
         },
         installation: {
-            image: 'images/services/Installation.jpg',
+            image: './assets/images/services/Installation.jpg',
             title: 'Installation Services',
             description: 'Professional installation services executed with precision and expertise.',
             features: [
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ]
         },
         operations: {
-            image: 'images/services/Operating-System.jpg',
+            image: './assets/images/services/Operating-System.jpg',
             title: 'Hotel Operating Systems',
             description: 'Comprehensive hotel management systems to streamline operations.',
             features: [
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ]
         },
         construction: {
-            image: 'images/services/Construction.jpg',
+            image: './assets/images/services/Construction.jpg',
             title: 'Hotel Construction',
             description: 'Full-service hotel construction management from ground up to renovation.',
             features: [
