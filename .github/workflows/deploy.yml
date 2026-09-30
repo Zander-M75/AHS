@@ -18,6 +18,10 @@ on:
     branches: [main]
   workflow_dispatch:
 
+# The job only reads the repo; the FTP secrets are passed to the upload steps explicitly
+permissions:
+  contents: read
+
 concurrency:
   group: deploy-godaddy
   cancel-in-progress: false
@@ -46,13 +50,15 @@ jobs:
       - name: Check out the site
         uses: actions/checkout@v7
 
+      # Pinned to the commit behind v4.4.0: this action receives the FTP password,
+      # so a moved tag can't swap in different code. Update the hash with the version.
       # GoDaddy's FTP login is slow (about 5s) and occasionally hangs outright,
       # so allow 60s per operation and retry once if the first attempt fails.
       # Verbose logs show which FTP command stalled if it happens again.
       - name: Upload changed files over FTPS
         id: upload
         continue-on-error: true
-        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        uses: SamKirkland/FTP-Deploy-Action@110f9186c050f71550953127052e77650219c287 # v4.4.0
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
@@ -65,7 +71,7 @@ jobs:
 
       - name: Retry upload
         if: steps.upload.outcome == 'failure'
-        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        uses: SamKirkland/FTP-Deploy-Action@110f9186c050f71550953127052e77650219c287 # v4.4.0
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
