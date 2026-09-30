@@ -48,13 +48,14 @@ AHS/
 ├── tablet.css          # Overrides at <= 1024px
 ├── mobile.css          # Overrides at <= 768px
 ├── script.js           # JavaScript functionality
+├── .htaccess           # Apache: HTTPS redirect and security headers
 ├── assets/             # Images, fonts, and media files
 │   ├── fonts/          # Archivo variable font (woff2)
 │   └── images/
 │       ├── AHS-Logo-only.png
-│       ├── hotel-hero.png
-│       ├── simple-room.png
-│       ├── hotel-lobby-1.png
+│       ├── hotel-hero.jpg
+│       ├── simple-room.jpg
+│       ├── hotel-lobby-1.jpg
 │       ├── services/   # Service section images
 │       │   ├── architectural-services.jpg
 │       │   ├── Space-Planning-Design.jpg
@@ -171,6 +172,8 @@ Colors are CSS custom properties at the top of `styles.css`, with a second set f
 3. **Gallery Images**: Update the `.gallery-slide` images in `index.html`
 4. **Contact Information**: Modify the contact card and footer in `index.html`
 
+**Image sizes:** phones on a mobile connection leave large images blank or half-drawn, so resize before adding. Save photos as JPEG (quality around 80) no wider than about twice their on-screen size: 2400px for the wide services banner, about 1280px for everything else. Logos should be about 240px tall. Update the `width`/`height` attributes on the `<img>` to match the new file.
+
 ### Adding New Services
 
 1. Add service data to `serviceContent` object in `script.js`
@@ -195,6 +198,17 @@ The form in the Contact section is sent to [Web3Forms](https://web3forms.com), w
 - Without JavaScript, the form still posts to Web3Forms and the visitor sees Web3Forms' confirmation page.
 
 **After deploying**, send a test inquiry and confirm it reaches Joel's inbox. His mail passes through Proofpoint before Microsoft 365, so if the test doesn't arrive, check the Proofpoint quarantine and add Web3Forms as an allowed sender.
+
+## 🔒 Security
+
+- **Content-Security-Policy** (the `<meta http-equiv>` tag in `index.html`): the page may only load its own scripts, styles, fonts and images, and form data may only go to Web3Forms. Two things to know when editing:
+  - The inline `<script>` in `<head>` is allowed by its SHA-256 hash. If you change that script, recompute the hash and replace the `sha256-...` value, or the browser will block it:
+    ```bash
+    python3 -c "import hashlib,base64;print(base64.b64encode(hashlib.sha256(b\"document.documentElement.classList.add('js');\").digest()).decode())"
+    ```
+  - Anything new from another site (a font, an analytics script, an embedded map, a captcha) must be added to the policy, or the browser will block it. Check the browser console for "Refused to load" messages after such a change.
+- **`.htaccess`** redirects `http://` to `https://`, tells browsers to stay on HTTPS (HSTS, one year), stops other sites from framing the page, and hides the deploy's `.ftp-deploy-sync-state.json` file from the web.
+- Validation in `script.js` is for visitors' convenience only; anyone can post to Web3Forms directly with the public key. Spam and abuse are filtered on Web3Forms' side (the honeypot plus its own filtering).
 
 ## 📱 Responsive Design
 
@@ -230,6 +244,8 @@ gh variable set FTP_SERVER_DIR --repo Zander-M75/AHS --body "./"
 ```
 
 `README.md`, the workflow itself, and images the site doesn't reference are excluded from the upload (see the `exclude` list in the workflow). If one of those images is put to use later, remove it from that list.
+
+`.htaccess` is uploaded like any other file and replaces the one in `public_html/`. Settings added through cPanel that live in that file (redirects, PHP version) belong in the repo's copy.
 
 ## 🌐 Browser Support
 

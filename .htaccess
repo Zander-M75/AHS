@@ -1,0 +1,24 @@
+# Apache settings for the GoDaddy host. The page's Content-Security-Policy is a <meta> tag
+# in index.html; these are the protections that can only be sent as response headers.
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Send http:// visitors to https:// so the page and its form can't be altered in transit
+    RewriteCond %{HTTPS} !=on
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+    # The deploy's bookkeeping file lists every file on the server; it only needs to be reachable over FTP
+    RewriteRule ^\.ftp-deploy-sync-state\.json$ - [R=404,L]
+</IfModule>
+
+<IfModule mod_headers.c>
+    # Browsers remember to use HTTPS for a year (mail., cpanel. and other subdomains are left alone)
+    Header always set Strict-Transport-Security "max-age=31536000"
+    # No other site may show these pages in a frame, so the form can't be overlaid to trick clicks
+    Header always set Content-Security-Policy "frame-ancestors 'none'"
+    Header always set X-Frame-Options "DENY"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+</IfModule>
