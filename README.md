@@ -49,6 +49,8 @@ AHS/
 ├── mobile.css          # Overrides at <= 768px
 ├── script.js           # JavaScript functionality
 ├── .htaccess           # Apache: HTTPS redirect and security headers
+├── favicon.ico         # Browser tab icon (16, 32 and 48px)
+├── apple-touch-icon.png # iPhone/iPad home screen icon (180px)
 ├── assets/             # Images, fonts, and media files
 │   ├── fonts/          # Archivo variable font (woff2)
 │   └── images/
